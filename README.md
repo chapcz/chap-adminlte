@@ -25,7 +25,7 @@ To use this extension, require it in [Composer](https://getcomposer.org/):
 ```bash
 composer require chapcz/chap-adminlte
 ```
-
+Minimal setup
 ```neon
 extensions:
 	admin: Chap\AdminLTE\DI\Extension
@@ -60,7 +60,7 @@ admin:
 ```
 ### Example with panels and search callback  
 
-
+Presenter 
 ```php
 <?php declare(strict_types=1);
 
@@ -156,7 +156,13 @@ class AdminPresenter extends Presenter
 
 ```
 
-##TODO:
+@layout.latte 
+```latte
+{capture $content}{include content}{/capture}
+
+{control admin $content, $flashes}
+```
+## TODO:
 
 - Improve menu control and better authorization for nested items
 - Modals
