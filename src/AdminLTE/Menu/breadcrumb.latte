@@ -1,0 +1,19 @@
+<section class="content-header" n:if="$current">
+	<h1>
+		{_$current->name}
+		<small n:if="$current->subTitle">{_$current->subTitle}</small>
+	</h1>
+	<ol class="breadcrumb">
+
+		{block #parents}
+ 				<li class="{if !$current->parent}active{/if}">
+					<a n:tag-if="$current->link && $current->parent" href="{plink $current->link}">
+						<i class="fa {$current->icon}"></i> {$current->name}
+					</a>
+					{if $current->parent}
+						{include #parents current => $current->parent}
+					{/if}
+				</li>
+ 		{/block}
+	</ol>
+</section>

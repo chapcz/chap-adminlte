@@ -1,0 +1,24 @@
+<ul class="sidebar-menu">
+	<li class="header">{_Navigation}</li>
+
+	<li n:foreach="$tree as $item" n:if="$item->allowed" class="treeview {if $item->isCurrent()}active{/if}">
+		<a href="{if $item->link}{plink $item->link}{else}#{/if}">
+			<i class="fa {$item->icon}"></i>
+			<span>{$item->name|translate}</span>
+			<span class="label label-primary pull-right" n:if="false">4</span>
+			<i class="fa fa-angle-left pull-right" n:if="count($item->items) > 0"></i>
+		</a>
+		{var $items = $item->items}
+		{block #parents}
+			<ul class="treeview-menu" n:if="count($items) > 0" n:foreach="$items as $subItem">
+				<li n:class="$subItem->isCurrent() ? active" n:if="$item->allowed">
+					<a href="{plink $subItem->link}">
+						<i class="fa fa-circle-o"></i> {$subItem->name|translate}
+						<i class="fa fa-angle-left pull-right" n:if="count($subItem->items) > 0"></i>
+					</a>
+					{include #parents items => $subItem->items}
+				</li>
+ 			</ul>
+		{/block}
+	</li>
+</ul>

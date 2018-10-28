@@ -1,0 +1,22 @@
+{
+	"name": "chapcz/chap-adminlte",
+	"autoload": {
+		"psr-4": {
+			"Chap\\AdminLTE\\": "src/AdminLTE"
+		}
+	},
+	"description": "Administration control",
+	"type": "project",
+	"license": ["MIT"],
+	"require": {
+		"php": ">= 7.1",
+		"latte/latte": "^2.4",
+		"nette/application": "^2.4",
+		"nette/forms": "^2.4",
+		"nette/security": "^2.4",
+		"janmarek/webloader": "dev-master"
+	},
+	"require-dev": {
+		"phpstan/phpstan-nette": "0.10.1"
+	}
+}
