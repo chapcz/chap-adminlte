@@ -3,7 +3,10 @@ module.exports = (grunt) ->
 
     clean:
       dist: [
-        'src/AdminLTE/assets/*'
+        'src/AdminLTE/assets/fonts/'
+        'src/AdminLTE/assets/scripts/'
+        'src/AdminLTE/assets/styles/'
+        'src/AdminLTE/assets/full-*'
       ]
 
     copy:
@@ -12,7 +15,7 @@ module.exports = (grunt) ->
           expand: true
           cwd: 'bower_components/font-awesome/fonts'
           src: ['**']
-          dest: 'assets/fonts'
+          dest: 'src/AdminLTE/assets/fonts'
         ]
       styles:
         files: [
@@ -60,6 +63,7 @@ module.exports = (grunt) ->
           'src/AdminLTE/assets/scripts/netteForms.js'
           'src/AdminLTE/assets/scripts/select2.full.min.js'
           'src/AdminLTE/assets/scripts/app.min.js'
+          'src/AdminLTE/assets/custom/nette.init.js'
         ]
 
   grunt.loadNpmTasks 'grunt-contrib-concat'
