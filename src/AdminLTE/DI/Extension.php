@@ -17,6 +17,7 @@ class Extension extends Nette\DI\CompilerExtension
 		$dir = __DIR__ . '/../assets';
 		return [
 			'wwwDir' => '%wwwDir%',
+			'appRoot' => '%wwwDir%/../',
 			'menu' => [],
 			'skin' => 'blue',
 			'footer' => '<strong>Copyright &copy; 2018 <a href="http://www.chap.cz">Jan Loufek</a></strong>',
@@ -43,6 +44,7 @@ class Extension extends Nette\DI\CompilerExtension
                 'mode' => 'default',
                 'default' => [
                     "$dir/full-admin.js",
+                    "$dir/modal.js",
                 ],
                 'custom' => []
             ],
