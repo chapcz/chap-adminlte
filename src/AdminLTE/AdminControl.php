@@ -137,9 +137,10 @@ class AdminControl extends Control
      */
     public function render(string $content, array $flashes = []): void
     {
+        $template = $this->getPresenter()->getParameter('lte_no_layout') ? 'layout.latte' : 'modal.latte';
         DummyTranslator::initEmpty($this->createTemplate())
             ->render(
-                __DIR__ . '/templates/layout.latte',
+                __DIR__ . '/templates/' . $template,
                 array_merge(['content' => $content, 'flashes' => $flashes], $this->defaults)
             );
     }
@@ -159,7 +160,7 @@ class AdminControl extends Control
      */
     private function getCollection(array $files): FileCollection
     {
-        $fileCollection = new FileCollection();
+        $fileCollection = new FileCollection($this->defaults['appRoot']);
         $allFiles = array_merge($files[$files['mode']], $files['custom']);
         foreach ($allFiles as $file) {
             if (strpos($file, 'http') === 0 || strpos($file, '//') === 0) {
