@@ -137,7 +137,8 @@ class AdminControl extends Control
      */
     public function render(string $content, array $flashes = []): void
     {
-        $template = $this->getPresenter()->getParameter('lte_no_layout') ? 'modal.latte' : 'layout.latte';
+        $presenter = $this->getPresenter();
+        $template = $presenter !== null && $presenter->getParameter('lte_no_layout') ? 'modal.latte' : 'layout.latte';
         DummyTranslator::initEmpty($this->createTemplate())
             ->render(
                 __DIR__ . '/templates/' . $template,
