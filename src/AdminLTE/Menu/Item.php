@@ -12,6 +12,11 @@ class Item
     public $items;
 
     /**
+     * @var Item[]|null
+     */
+    public $shownItems;
+
+    /**
      * @var Item|null
      */
     public $parent;
@@ -81,10 +86,15 @@ class Item
         $this->resource = $values['resource'] ?? null;
         $this->privilege = $values['privilege'] ?? null;
         $this->items = [];
+        $this->shownItems = [];
         $this->allowed = $this->checkPermission($user, $values);
         $this->parent = $parent;
         foreach ($values['items'] ?? [] as $value) {
-            $this->items[] = new Item($value, $user, $this);
+            $item = new Item($value, $user, $this);
+            $this->items[] = $item;
+            if ($item->shown) {
+                $this->shownItems[] = $item;
+            }
         }
     }
 

@@ -192,7 +192,7 @@ class AdminControl extends Control
      */
     public function createComponentJs(): JavaScriptLoader
     {
-        $compiler = Compiler::createCssCompiler(
+        $compiler = Compiler::createJsCompiler(
             $this->getCollection($this->defaults['jsFiles']),
             $this->defaults['wwwDir'] . '/' . $this->outputDir
         );
