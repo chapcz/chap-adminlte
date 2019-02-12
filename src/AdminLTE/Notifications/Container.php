@@ -8,7 +8,7 @@ use Nette\ComponentModel\IComponent;
 class Container extends Control
 {
     /** @var IPanel[] */
-    private $panels;
+    private $panels = [];
 
     /**
      * @param IPanel $panel
