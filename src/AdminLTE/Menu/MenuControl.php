@@ -46,6 +46,7 @@ class MenuControl extends Control
             try {
                 if ($item->link !== null && $presenter->isLinkCurrent($item->link) === true) {
                     $item->isCurrent = true;
+                    //$item->link = $presenter->link('this');
                     $this->current = $item;
                     if ($this->current->allowed === false) {
                         throw new ForbiddenRequestException('This view is not allowed');
