@@ -1,0 +1,13 @@
+language: php
+
+php:
+  - 7.1
+  - 7.2
+  - 7.3
+
+script:
+    - composer phpstan
+
+before_script:
+  - composer self-update
+  - composer install
