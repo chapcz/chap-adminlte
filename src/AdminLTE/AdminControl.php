@@ -13,10 +13,7 @@ use Nette\Application\UI\Form;
 use Nette\Http\Request;
 use Nette\Security\User;
 use Nette\Utils\Html;
-use WebLoader\Compiler;
-use WebLoader\FileCollection;
-use WebLoader\Nette\CssLoader;
-use WebLoader\Nette\JavaScriptLoader;
+use WebLoader\Engine;
 
 class AdminControl extends Control
 {
@@ -46,9 +43,9 @@ class AdminControl extends Control
     private $menuControlFactory;
 
     /**
-     * @var string
+     * @var Engine
      */
-    private $outputDir = 'webtemp';
+    private $webLoader;
 
     /**
      * @var Request
@@ -60,12 +57,14 @@ class AdminControl extends Control
      * @param User                $user
      * @param IMenuControlFactory $menuControlFactory
      * @param Request             $request
+     * @param Engine              $webLoader
      */
     public function __construct(
         ILoginFormFactory $loginFormFactory,
         User $user,
         IMenuControlFactory $menuControlFactory,
-        Request $request
+        Request $request,
+        Engine $webLoader
     ) {
         parent::__construct();
 
@@ -73,6 +72,7 @@ class AdminControl extends Control
         $this->user = $user;
         $this->request = $request;
         $this->menuControlFactory = $menuControlFactory;
+        $this->webLoader = $webLoader;
     }
 
     /**
@@ -155,48 +155,17 @@ class AdminControl extends Control
         $this->redirect('this');
     }
 
-    /**
-     * @param array $files
-     * @return FileCollection
-     */
-    private function getCollection(array $files): FileCollection
+    public function beforeRender(): void
     {
-        $fileCollection = new FileCollection($this->defaults['appRoot']);
-        $allFiles = array_merge($files[$files['mode']], $files['custom']);
-        foreach ($allFiles as $file) {
-            if (strpos($file, 'http') === 0 || strpos($file, '//') === 0) {
-                $fileCollection->addRemoteFile($file);
-            } else {
-                $fileCollection->addFile($file);
-            }
-        }
+        $cssFiles = $this->defaults['css'];
+        $this->webLoader->createCssFilesCollection('admin-bundle')
+            ->setFiles(array_merge($cssFiles[$cssFiles['mode']], $cssFiles['custom']));
+        $jsFiles = $this->defaults['js'];
+        $this->webLoader->createJsFilesCollection('admin-bundle')
+            ->setFiles(array_merge($jsFiles[$jsFiles['mode']], $jsFiles['custom']));
 
-        return $fileCollection;
-    }
-
-    /**
-     * @return CssLoader
-     */
-    public function createComponentCss(): CssLoader
-    {
-        $compiler = Compiler::createCssCompiler(
-            $this->getCollection($this->defaults['cssFiles']),
-            $this->defaults['wwwDir'] . '/' . $this->outputDir
-        );
-
-        return new CssLoader($compiler, $this->request->url->basePath . $this->outputDir);
-    }
-
-    /**
-     * @return JavaScriptLoader
-     */
-    public function createComponentJs(): JavaScriptLoader
-    {
-        $compiler = Compiler::createJsCompiler(
-            $this->getCollection($this->defaults['jsFiles']),
-            $this->defaults['wwwDir'] . '/' . $this->outputDir
-        );
-
-        return new JavaScriptLoader($compiler, $this->request->url->basePath . $this->outputDir);
+        $this->template->setParameters([
+            'webLoader' => $this->webLoader->getFilesCollectionRender()
+        ]);
     }
 }

@@ -9,15 +9,16 @@
 	"type": "project",
 	"license": ["MIT"],
 	"require": {
-		"php": ">= 7.1",
-		"latte/latte": "^2.4",
-		"nette/application": "^2.4",
-		"nette/forms": "^2.4",
-		"nette/security": "^2.4",
-		"janmarek/webloader": "dev-master"
+		"php": ">= 7.2",
+		"latte/latte": "^2.5",
+		"nette/application": "^3.0",
+		"nette/forms": "^3.0",
+		"nette/security": "^3.0",
+		"machy8/webloader": "^1.3",
+		"nette/di": "^3.0"
 	},
 	"require-dev": {
-		"phpstan/phpstan-nette": "^0.11"
+		"phpstan/phpstan-nette": "^0.12"
 	},
 	"scripts": {
 		"phpstan": "phpstan analyse src --configuration=.phpstan/phpstan.neon"

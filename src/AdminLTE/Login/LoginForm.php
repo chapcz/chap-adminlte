@@ -48,17 +48,17 @@ class LoginForm extends Control
 
         if ($this->defaults['usernameType'] === 'email') {
             $form->addText('username', 'Email')
-                ->setAttribute('placeholder', 'Email')
+                ->setHtmlAttribute('placeholder', 'Email')
                 ->setRequired('Please enter your email.')
                 ->addRule(Form::EMAIL, 'Please enter a valid email address.');
         } else {
             $form->addText('username', 'Username')
-                ->setAttribute('placeholder', 'Username')
+                ->setHtmlAttribute('placeholder', 'Username')
                 ->setRequired('Please enter your username.');
         }
 
         $form->addPassword('password', 'Password')
-            ->setAttribute('placeholder', 'Password')
+            ->setHtmlAttribute('placeholder', 'Password')
             ->setRequired('Please enter your password.');
 
         $form->addCheckbox('remember', 'Remember Me');
