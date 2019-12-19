@@ -6,6 +6,7 @@ use Chap\AdminLTE\IAdminControlFactory;
 use Chap\AdminLTE\Login\ILoginFormFactory;
 use Chap\AdminLTE\Menu\IMenuControlFactory;
 use Nette;
+use WebLoader\Bridges\Nette\WebLoaderExtension;
 
 class Extension extends Nette\DI\CompilerExtension
 {
@@ -51,20 +52,29 @@ class Extension extends Nette\DI\CompilerExtension
 		];
 	}
 
+    /**
+     * @throws Nette\Utils\AssertionException
+     */
 	public function loadConfiguration(): void
 	{
-		$config = $this->getConfig($this->getDefaultConfig());
+        if (!$this->compiler->getExtensions(WebLoaderExtension::class)) {
+            throw new Nette\Utils\AssertionException('You should register \'WebLoaderExtension\' before \'' . get_class($this) . '\'.', E_USER_NOTICE);
+        }
+
+		$config = $this->setConfig($this->getDefaultConfig())->getConfig();
 		$builder = $this->getContainerBuilder();
 
-        $builder->addDefinition($this->prefix('baseAdminControl'))
+        $builder->addFactoryDefinition($this->prefix('baseAdminControl'))
             ->setImplement(IAdminControlFactory::class)
+            ->getResultDefinition()
             ->addSetup('configure', [$config]);
 
-        $builder->addDefinition($this->prefix('loginFormControl'))
+        $builder->addFactoryDefinition($this->prefix('loginFormControl'))
             ->setImplement(ILoginFormFactory::class)
+            ->getResultDefinition()
             ->addSetup('configure', [$config['login']]);
 
-        $builder->addDefinition($this->prefix('menuControl'))
+        $builder->addFactoryDefinition($this->prefix('menuControl'))
             ->setImplement(IMenuControlFactory::class);
 	}
 }

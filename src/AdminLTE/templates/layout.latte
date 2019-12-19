@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>{ifset title}{include title|striptags} | {/ifset}Nette Web</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        {control css}
+        {$webLoader->css('admin-bundle')|noescape}
         <link rel="shortcut icon" href="{$basePath}/favicon.ico">
     </head>
 
@@ -14,7 +14,7 @@
                 {include "contentAnnonymous.latte"}
             {/if}
 
-    {control js}
+    {$webLoader->js('admin-bundle')|noescape}
 
     <div id="modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg">
