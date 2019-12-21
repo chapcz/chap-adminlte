@@ -32,13 +32,12 @@ class MenuControl extends Control
      */
     public function __construct(array $menuStructure, Component $parent, User $user)
     {
-        parent::__construct();
 
         foreach ($menuStructure as $values) {
             $this->tree[] = new Item($values, $user);
         }
         $this->flatten($this->tree);
-        $presenter = $parent->getPresenter(false);
+        $presenter = $parent->getPresenterIfExists();
         if ($presenter === null) {
             return;
         }

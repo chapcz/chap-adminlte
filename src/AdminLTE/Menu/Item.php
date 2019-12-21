@@ -105,7 +105,7 @@ class Item
      */
     private function checkPermission(User $user, array $values): bool
     {
-        if ($user->getAuthorizator(false) === null) {
+        if ($user->getAuthorizatorIfExists(false) === null) {
             return true;
         }
         $role = $values['role'] ?? null;

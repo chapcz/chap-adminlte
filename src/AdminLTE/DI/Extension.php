@@ -61,7 +61,7 @@ class Extension extends Nette\DI\CompilerExtension
             throw new Nette\Utils\AssertionException('You should register \'WebLoaderExtension\' before \'' . get_class($this) . '\'.', E_USER_NOTICE);
         }
 
-		$config = $this->setConfig($this->getDefaultConfig())->getConfig();
+        $config = $this->setConfig(array_merge_recursive($this->getDefaultConfig(), $this->config))->getConfig();
 		$builder = $this->getContainerBuilder();
 
         $builder->addFactoryDefinition($this->prefix('baseAdminControl'))
