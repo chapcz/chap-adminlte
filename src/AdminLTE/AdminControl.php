@@ -66,8 +66,6 @@ class AdminControl extends Control
         Request $request,
         Engine $webLoader
     ) {
-        parent::__construct();
-
         $this->loginFormFactory = $loginFormFactory;
         $this->user = $user;
         $this->request = $request;
@@ -139,10 +137,21 @@ class AdminControl extends Control
     {
         $presenter = $this->getPresenter();
         $template = $presenter !== null && $presenter->getParameter('lte_no_layout') ? 'modal.latte' : 'layout.latte';
+        $cssFiles = $this->defaults['cssFiles'];
+        $this->webLoader->createCssFilesCollection('admin-bundle')
+            ->setFiles(array_merge($cssFiles[$cssFiles['mode']], $cssFiles['custom']));
+        $jsFiles = $this->defaults['jsFiles'];
+        $this->webLoader->createJsFilesCollection('admin-bundle')
+            ->setFiles(array_merge($jsFiles[$jsFiles['mode']], $jsFiles['custom']));
+
         DummyTranslator::initEmpty($this->createTemplate())
             ->render(
                 __DIR__ . '/templates/' . $template,
-                array_merge(['content' => $content, 'flashes' => $flashes], $this->defaults)
+                array_merge([
+                    'content' => $content,
+                    'flashes' => $flashes,
+                    'webLoader' => $this->webLoader->getFilesCollectionRender(),
+                ], $this->defaults)
             );
     }
 
@@ -157,15 +166,10 @@ class AdminControl extends Control
 
     public function beforeRender(): void
     {
-        $cssFiles = $this->defaults['css'];
-        $this->webLoader->createCssFilesCollection('admin-bundle')
-            ->setFiles(array_merge($cssFiles[$cssFiles['mode']], $cssFiles['custom']));
-        $jsFiles = $this->defaults['js'];
-        $this->webLoader->createJsFilesCollection('admin-bundle')
-            ->setFiles(array_merge($jsFiles[$jsFiles['mode']], $jsFiles['custom']));
+
 
         $this->template->setParameters([
-            'webLoader' => $this->webLoader->getFilesCollectionRender()
+
         ]);
     }
 }

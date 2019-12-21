@@ -44,8 +44,6 @@ abstract class BasePanel extends Control implements IPanel
 
     public function __construct(ITranslator $translator = null)
     {
-        parent::__construct();
-
         $this->translator = $translator ?? new DummyTranslator();
     }
 

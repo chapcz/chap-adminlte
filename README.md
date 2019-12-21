@@ -4,6 +4,8 @@
 * [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 * [Nette Framework](https://nette.org/)
 
+* Sandbox with example
+
 This extension simplifies the creation of Administration control.
 
 Features:

@@ -26,8 +26,6 @@ class LoginForm extends Control
      */
     public function __construct(User $user)
     {
-        parent::__construct();
-
         $this->user = $user;
     }
 
@@ -76,9 +74,9 @@ class LoginForm extends Control
         $values = $form->values;
         try {
             if ($values->remember) {
-                $this->user->setExpiration('14 days', false);
+                $this->user->setExpiration('14 days');
             } else {
-                $this->user->setExpiration(0, true);
+                $this->user->setExpiration(0);
             }
             $this->user->login($values->username, $values->password);
 
