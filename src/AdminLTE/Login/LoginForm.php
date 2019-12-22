@@ -4,9 +4,10 @@ namespace Chap\AdminLTE\Login;
 
 use Chap\AdminLTE\DummyTranslator;
 use Nette\Application\UI\Control;
-use Nette\Application\UI\Form;
+use Nette\Forms\Form;
 use Nette\Security\AuthenticationException;
 use Nette\Security\User;
+use Nette\Utils\ArrayHash;
 
 class LoginForm extends Control
 {
@@ -42,7 +43,7 @@ class LoginForm extends Control
      */
     protected function createComponentForm(): Form
     {
-        $form = new Form();
+        $form = new \Nette\Application\UI\Form();
 
         if ($this->defaults['usernameType'] === 'email') {
             $form->addText('username', 'Email')
@@ -61,22 +62,24 @@ class LoginForm extends Control
 
         $form->addCheckbox('remember', 'Remember Me');
         $form->addSubmit('submit', 'Sign In');
-        $form->onSuccess[] = [$this, 'process'];
+        $form->onSuccess[] = function (Form $form, ArrayHash $values): void {
+            $this->process($form, $values);
+        };
 
         return $form;
     }
 
     /**
-     * @param Form $form
+     * @param Form      $form
+     * @param ArrayHash $values
      */
-    public function process(Form $form): void
+    public function process(Form $form, ArrayHash $values): void
     {
-        $values = $form->values;
         try {
             if ($values->remember) {
                 $this->user->setExpiration('14 days');
             } else {
-                $this->user->setExpiration(0);
+                $this->user->setExpiration('10 minutes');
             }
             $this->user->login($values->username, $values->password);
 

@@ -2,6 +2,7 @@
 
 namespace Chap\AdminLTE\Menu;
 
+use Nette\InvalidStateException;
 use Nette\Security\User;
 
 class Item
@@ -105,7 +106,13 @@ class Item
      */
     private function checkPermission(User $user, array $values): bool
     {
-        if ($user->getAuthorizatorIfExists(false) === null) {
+        try {
+            if ($user->getAuthorizatorIfExists() === null) {
+                return true;
+            }
+        } catch (InvalidStateException $e) {
+            // Parameter for not throwing exception on non existent authorizator is magic,
+            // for static analysis I used catch of thrown exception
             return true;
         }
         $role = $values['role'] ?? null;
