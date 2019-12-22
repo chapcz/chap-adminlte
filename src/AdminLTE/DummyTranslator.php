@@ -11,11 +11,11 @@ use Nette\Localization\ITranslator;
 class DummyTranslator implements ITranslator
 {
     /**
-     * @param       $message
+     * @param string $message
      * @param mixed ...$parameters
      * @return string
      */
-    function translate($message, ...$parameters): string
+    public function translate($message, ...$parameters): string
     {
         return $message;
     }

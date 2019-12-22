@@ -2,11 +2,14 @@
 
 namespace Chap\AdminLTE\Notifications;
 
-use Kdyby\Translation\ITranslator;
+use Nette\Localization\ITranslator;
 use Nette\Utils\Html;
 
 class NotificationPanel extends BasePanel
 {
+    /**
+     * @param ITranslator|null $translator
+     */
     public function __construct(?ITranslator $translator)
     {
         parent::__construct($translator);
@@ -15,7 +18,7 @@ class NotificationPanel extends BasePanel
 
     /**
      * @param null|string $link
-     * @param null|string $text
+     * @param string $text
      * @param string      $icon
      * @param string      $iconColor
      * @return NotificationPanel

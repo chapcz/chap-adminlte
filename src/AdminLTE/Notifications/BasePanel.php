@@ -146,7 +146,7 @@ abstract class BasePanel extends Control implements IPanel
         DummyTranslator::initEmpty($this->getTemplate())
             ->render(
             __DIR__ . '/template.latte',
-            $values
+                (array) $values
         );
     }
 }

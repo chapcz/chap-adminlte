@@ -163,13 +163,4 @@ class AdminControl extends Control
         $this->user->logout();
         $this->redirect('this');
     }
-
-    public function beforeRender(): void
-    {
-
-
-        $this->template->setParameters([
-
-        ]);
-    }
 }
