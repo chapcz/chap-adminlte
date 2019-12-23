@@ -18,7 +18,7 @@ class CustomPanel extends BasePanel
     }
 
     /**
-     * @param Html $html
+     * @param Html<string, mixed> $html
      * @return CustomPanel
      */
     public function addHtml(Html $html): self

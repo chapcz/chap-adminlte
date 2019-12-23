@@ -11,7 +11,7 @@ abstract class BasePanel extends Control implements IPanel
 {
     /**
      * Template parameters
-     * @var array
+     * @var array<string, mixed>
      */
     private static $defaults = [
         'counter'     => [
@@ -30,7 +30,7 @@ abstract class BasePanel extends Control implements IPanel
     ];
 
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected $parameters = [
         'items' => [],
@@ -92,7 +92,7 @@ abstract class BasePanel extends Control implements IPanel
     }
 
     /**
-     * @param Html $html
+     * @param Html<string, mixed> $html
      * @return static
      */
     protected function addItem(Html $html): self

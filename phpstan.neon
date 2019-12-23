@@ -1,0 +1,9 @@
+parameters:
+    level: max
+    paths:
+    	- src
+
+includes:
+    # nette extension and rules
+    - ./vendor/phpstan/phpstan-nette/extension.neon
+    - ./vendor/phpstan/phpstan-nette/rules.neon

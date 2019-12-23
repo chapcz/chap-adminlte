@@ -18,7 +18,7 @@ class LoginForm extends Control
     private $user;
 
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     private $defaults = [];
 
@@ -31,7 +31,7 @@ class LoginForm extends Control
     }
 
     /**
-     * @param array $defaults
+     * @param array<string, mixed> $defaults
      */
     public function configure(array $defaults): void
     {
@@ -70,8 +70,8 @@ class LoginForm extends Control
     }
 
     /**
-     * @param Form      $form
-     * @param ArrayHash $values
+     * @param Form                     $form
+     * @param ArrayHash<string, mixed> $values
      */
     public function process(Form $form, ArrayHash $values): void
     {

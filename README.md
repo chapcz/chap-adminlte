@@ -100,7 +100,7 @@ class AdminPresenter extends Presenter
             ->addPanel($this->getExampleTasksPanel())
             ->addPanel($this->getMessagesPanel());
 
-        $admin->onSearch[] = function (Form $form) {
+        $admin->onSearch[] = function (Form $form): void {
             $this->redirect('search', ['word' => $form->getValues()['q']]);
         };
 

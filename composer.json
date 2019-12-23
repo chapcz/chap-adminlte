@@ -19,9 +19,9 @@
 		"nette/di": "^3.0"
 	},
 	"require-dev": {
-		"phpstan/phpstan-nette": "^0.11"
+		"phpstan/phpstan-nette": "^0.12"
 	},
 	"scripts": {
-		"phpstan": "phpstan analyse src --configuration=.phpstan/phpstan.neon"
+		"phpstan": "phpstan analyse"
 	}
 }

@@ -11,7 +11,7 @@ use WebLoader\Bridges\Nette\WebLoaderExtension;
 class Extension extends Nette\DI\CompilerExtension
 {
     /**
-     * @return array
+     * @return array<string, mixed>
      */
 	private function getDefaultConfig(): array
 	{

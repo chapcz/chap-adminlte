@@ -23,7 +23,7 @@ class AdminControl extends Control
     private $loginFormFactory;
 
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     private $defaults = [];
 
@@ -33,6 +33,7 @@ class AdminControl extends Control
     private $user;
 
     /**
+     * @phpstan-var (callable(Form): void)[]
      * @var callable[]
      */
     public $onSearch = [];
@@ -74,7 +75,7 @@ class AdminControl extends Control
     }
 
     /**
-     * @param array $configuration
+     * @param array<string, mixed> $configuration
      */
     public function configure(array $configuration): void
     {
@@ -99,7 +100,9 @@ class AdminControl extends Control
         $form->addSubmit('submit')
             ->getControlPrototype()->setName('button')
             ->setHtml(Html::el('i')->addAttributes(['class' => 'fa fa-search']));
-        $form->onSubmit = $this->onSearch;
+        $form->onSubmit[] = function(Form $form): void {
+        	$this->onSearch($form);
+        };
 
         return $form;
     }
@@ -130,8 +133,8 @@ class AdminControl extends Control
     }
 
     /**
-     * @param string $content
-     * @param array  $flashes
+     * @param string   $content
+     * @param object[] $flashes
      */
     public function render(string $content, array $flashes = []): void
     {
