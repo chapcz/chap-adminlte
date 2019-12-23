@@ -13,7 +13,7 @@ module.exports = (grunt) ->
       fonts:
         files: [
           expand: true
-          cwd: 'bower_components/font-awesome/fonts'
+          cwd: 'node_modules/font-awesome/fonts'
           src: ['**']
           dest: 'src/AdminLTE/assets/fonts'
         ]
@@ -21,7 +21,7 @@ module.exports = (grunt) ->
         files: [
           expand: true
           flatten: true
-          cwd: 'bower_components'
+          cwd: 'node_modules'
           src: [
             'bootstrap/dist/css/bootstrap.min.css'
             'admin-lte/dist/css/AdminLTE.min.css'
@@ -34,7 +34,7 @@ module.exports = (grunt) ->
         files: [
           expand: true
           flatten: true
-          cwd: 'bower_components'
+          cwd: 'node_modules'
           src: [
             'jquery/dist/jquery.min.js'
             'bootstrap/dist/js/bootstrap.min.js'
