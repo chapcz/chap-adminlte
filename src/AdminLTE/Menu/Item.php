@@ -73,7 +73,7 @@ class Item
     public $allowed = true;
 
     /**
-     * @param array     $values
+     * @param array<string, mixed> $values
      * @param User      $user
      * @param Item|null $parent
      */
@@ -101,7 +101,7 @@ class Item
 
     /**
      * @param User  $user
-     * @param array $values
+     * @param array<string, mixed> $values
      * @return bool
      */
     private function checkPermission(User $user, array $values): bool

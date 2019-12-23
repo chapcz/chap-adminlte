@@ -25,7 +25,7 @@ class MenuControl extends Control
     private $current;
 
     /**
-     * @param array     $menuStructure
+     * @param array<array<string, mixed>> $menuStructure
      * @param Component $parent
      * @param User      $user
      * @throws ForbiddenRequestException

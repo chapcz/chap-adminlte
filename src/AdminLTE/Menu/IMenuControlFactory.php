@@ -7,7 +7,7 @@ use Nette\Application\UI\Component;
 interface IMenuControlFactory
 {
     /**
-     * @param array     $menuStructure
+     * @param array<array<string, mixed>> $menuStructure
      * @param Component $parent
      * @return MenuControl
      */
