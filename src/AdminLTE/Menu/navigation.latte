@@ -1,7 +1,7 @@
-<ul class="sidebar-menu">
+<ul class="sidebar-menu" data-widget="tree">
 	<li class="header">{_Navigation}</li>
 
-	<li n:foreach="$tree as $item" n:if="$item->allowed" class="treeview {if $item->isCurrent()}active{/if}">
+	<li n:foreach="$tree as $item" n:if="$item->allowed" class="{if count($item->shownItems) > 0}treeview{/if} {if $item->isCurrent()}active{/if}">
 		<a href="{if $item->link}{plink $item->link}{else}#{/if}">
 			<i class="fa {$item->icon}"></i>
 			<span>{$item->name|translate}</span>
@@ -10,15 +10,18 @@
 		</a>
 		{var $items = $item->shownItems}
 		{block #parents}
-			<ul class="treeview-menu" n:if="count($items) > 0" n:foreach="$items as $subItem">
-				<li n:class="$subItem->isCurrent() ? active" n:if="$item->allowed">
+			<ul class="treeview-menu" n:if="count($items) > 0" >
+				<li class="{if count($subItem->shownItems) > 0}treeview{/if} {if $subItem->isCurrent()}active{/if}"
+						n:foreach="$items as $subItem"
+						n:if="$item->allowed"
+				>
 					<a href="{plink $subItem->link}">
 						<i class="fa fa-circle-o"></i> {$subItem->name|translate}
 						<i class="fa fa-angle-left pull-right" n:if="count($subItem->items) > 0"></i>
 					</a>
 					{include #parents items => $subItem->items}
 				</li>
- 			</ul>
+			</ul>
 		{/block}
 	</li>
 </ul>

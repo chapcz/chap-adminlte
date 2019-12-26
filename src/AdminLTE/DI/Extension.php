@@ -44,8 +44,7 @@ class Extension extends Nette\DI\CompilerExtension
             'jsFiles' => [
                 'mode' => 'default',
                 'default' => [
-                    "$dir/full-admin.js",
-                    "$dir/modal.js",
+                    "$dir/full-admin.min.js",
                 ],
                 'custom' => []
             ],
