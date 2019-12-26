@@ -3,75 +3,50 @@ module.exports = (grunt) ->
 
     clean:
       dist: [
-        'src/AdminLTE/assets/fonts/'
-        'src/AdminLTE/assets/scripts/'
-        'src/AdminLTE/assets/styles/'
         'src/AdminLTE/assets/full-*'
       ]
 
-    copy:
-      fonts:
-        files: [
-          expand: true
-          cwd: 'node_modules/font-awesome/fonts'
-          src: ['**']
-          dest: 'src/AdminLTE/assets/fonts'
-        ]
-      styles:
-        files: [
-          expand: true
-          flatten: true
-          cwd: 'node_modules'
-          src: [
-            'bootstrap/dist/css/bootstrap.min.css'
-            'admin-lte/dist/css/AdminLTE.min.css'
-            'admin-lte/dist/css/skins/_all-skins.min.css'
-            'font-awesome/css/font-awesome.min.css'
-          ]
-          dest: 'src/AdminLTE/assets/styles'
-        ]
-      scripts:
-        files: [
-          expand: true
-          flatten: true
-          cwd: 'node_modules'
-          src: [
-            'jquery/dist/jquery.min.js'
-            'bootstrap/dist/js/bootstrap.min.js'
-            'nette.ajax.js/nette.ajax.js'
-            'nette-forms/src/assets/netteForms.js'
-            'select2/dist/js/select2.full.min.js'
-            'admin-lte/dist/js/app.min.js'
-          ]
-          dest: 'src/AdminLTE/assets/scripts'
-        ]
-
     concat:
-      admin:
+      admin_css:
         dest: 'src/AdminLTE/assets/full-admin.css'
         src: [
-          'src/AdminLTE/assets/styles/bootstrap.min.css'
-          'src/AdminLTE/assets/styles/AdminLTE.min.css'
-          'src/AdminLTE/assets/styles/_all-skins.min.css'
+          'node_modules/bootstrap/dist/css/bootstrap.css'
+          'node_modules/admin-lte/dist/css/AdminLTE.min.css'
+          'node_modules/admin-lte/dist/css/skins/_all-skins.min.css'
         ]
-      adminjs:
+      admin_js:
         dest: 'src/AdminLTE/assets/full-admin.js'
         src: [
-          'src/AdminLTE/assets/scripts/jquery.min.js'
-          'src/AdminLTE/assets/scripts/bootstrap.min.js'
-          'src/AdminLTE/assets/scripts/nette.ajax.js'
-          'src/AdminLTE/assets/scripts/netteForms.js'
-          'src/AdminLTE/assets/scripts/select2.full.min.js'
-          'src/AdminLTE/assets/scripts/app.min.js'
+          'node_modules/jquery/dist/jquery.min.js'
+          'node_modules/nette.ajax.js/nette.ajax.js'
+          'node_modules/nette-forms/src/assets/netteForms.js'
+          'node_modules/select2/dist/js/select2.full.min.js'
+          'node_modules/admin-lte/dist/js/adminlte.min.js'
+          'node_modules/bootstrap/dist/js/bootstrap.min.js'
           'src/AdminLTE/assets/custom/nette.init.js'
+          'src/AdminLTE/assets/custom/modal.js'
         ]
+
+    uglify:
+      admin_js:
+        files:
+          'src/AdminLTE/assets/full-admin.min.js': ['src/AdminLTE/assets/full-admin.js']
+
+    cssmin:
+      admin_css:
+        files:
+          'src/AdminLTE/assets/full-admin.min.css': ['src/AdminLTE/assets/full-admin.css']
+
 
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-clean'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
+  grunt.loadNpmTasks 'grunt-contrib-cssmin'
   grunt.loadNpmTasks 'grunt-contrib-copy'
 
   grunt.registerTask 'default', [
     'clean'
-    'copy'
     'concat'
+    'cssmin'
+    'uglify'
   ]
