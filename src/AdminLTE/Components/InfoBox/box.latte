@@ -1,0 +1,13 @@
+<a n:tag-if="$box->getLink() !== null" href="{$box->getLink()}">
+    <div class="info-box bg-{$box->getColor()}">
+        <span class="info-box-icon"><i class="fa fa-{$box->getIcon()}"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">{$box->getText()}</span>
+            <span class="info-box-number" n:if="$box->getNumber() !== null">{$box->getNumber()|number}</span>
+            <div class="progress" n:if="$box->getProgress() !== null">
+                <div class="progress-bar" style="width: {$box->getProgress()}%"></div>
+            </div>
+            <span class="progress-description"n:if="$box->getProgressText() !== null">{$box->getProgressText()}</span>
+        </div>
+    </div>
+</a>

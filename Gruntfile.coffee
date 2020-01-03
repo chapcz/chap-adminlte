@@ -11,7 +11,7 @@ module.exports = (grunt) ->
         dest: 'src/AdminLTE/assets/full-admin.css'
         src: [
           'node_modules/bootstrap/dist/css/bootstrap.css'
-          'node_modules/admin-lte/dist/css/AdminLTE.min.css'
+          'node_modules/admin-lte/dist/css/adminlte.min.css'
           'node_modules/admin-lte/dist/css/skins/_all-skins.min.css'
         ]
       admin_js:

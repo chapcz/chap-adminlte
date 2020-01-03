@@ -1,34 +1,36 @@
-<body class="skin-{$skin} sidebar-mini">
+<body class="skin-{$skin} hold-transition sidebar-mini">
 <div class="wrapper">
 
     {include "header.latte"}
 
-    <aside class="main-sidebar">
-        <section class="sidebar">
-
-            {form search class=>"sidebar-form"}
-                <div class="input-group">
-                    {input q class=> "form-control", placeholder=> "Search ..."}
-                    <span class="input-group-btn">{input submit class=>"btn btn-flat"}</span>
-                </div>
-            {/form}
+    <aside class="main-sidebar sidebar-dark-primary">
+        <a href="{plink Homepage:}" class="brand-link">
+            <span class="brand-text"><b>Admin</b>LTE</span>
+        </a>
+        <div class="sidebar">
+            {if $search === 'sidebar'}
+                {form search class=>"form-inline"}
+                    <div class="input-group">
+                        {input q class=> "form-control", placeholder=> "Search ..."}
+                        <span class="input-group-btn">{input submit class=>"btn btn-sidebar"}</span>
+                    </div>
+                {/form}
+            {/if}
 
             {control menu:menu}
-
-        </section>
+        </div>
     </aside>
-
-    <div class="content-wrapper">
+    <div class="content-wrapper px-4 py-2">
         {control menu:breadcrumb}
-        <section class="content">
+        <div class="container-fluid">
             {snippet flash}
-                <div n:foreach="$presenter->template->flashes as $flash" class="alert alert-{$flash->type} fade in" n:block="flashes">
+                <div n:foreach="$presenter->template->flashes as $flash" class="alert alert-{$flash->type}" n:block="flashes">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     {$flash->message|translate}
                 </div>
             {/snippet}
             {$content|noescape}
-        </section>
+        </div>
     </div>
 
     {include "footer.latte"}

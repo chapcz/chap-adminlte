@@ -6,8 +6,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "admin-lte": "~2.4.18",
-    "bootstrap": "~3.4.1",
+    "admin-lte": "~3.0.1",
+    "bootstrap": "~4.4.1",
     "font-awesome": "~4.7.0",
     "jquery": "~3.4.1",
     "nette.ajax.js": "~2.3.0",

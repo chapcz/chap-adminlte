@@ -1,27 +1,34 @@
-<ul class="sidebar-menu" data-widget="tree">
-	<li class="header">{_Navigation}</li>
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+        <li class="nav-header">{_Navigation}</li>
 
-	<li n:foreach="$tree as $item" n:if="$item->allowed" class="{if count($item->shownItems) > 0}treeview{/if} {if $item->isCurrent()}active{/if}">
-		<a href="{if $item->link}{plink $item->link}{else}#{/if}">
-			<i class="fa {$item->icon}"></i>
-			<span>{$item->name|translate}</span>
-			<span class="label label-primary pull-right" n:if="false">4</span>
-			<i class="fa fa-angle-left pull-right" n:if="count($item->shownItems) > 0"></i>
-		</a>
-		{var $items = $item->shownItems}
-		{block #parents}
-			<ul class="treeview-menu" n:if="count($items) > 0" >
-				<li class="{if count($subItem->shownItems) > 0}treeview{/if} {if $subItem->isCurrent()}active{/if}"
-						n:foreach="$items as $subItem"
-						n:if="$item->allowed"
-				>
-					<a href="{plink $subItem->link}">
-						<i class="fa fa-circle-o"></i> {$subItem->name|translate}
-						<i class="fa fa-angle-left pull-right" n:if="count($subItem->items) > 0"></i>
-					</a>
-					{include #parents items => $subItem->items}
-				</li>
-			</ul>
-		{/block}
-	</li>
-</ul>
+        <li n:foreach="$tree as $item" n:if="$item->allowed"
+                class="{if count($item->shownItems) > 0}has-treeview{/if} {if $item->isCurrent()}menu-open{/if} nav-item">
+            <a class="nav-link {if $item->isCurrent(false)}active{/if}" href="{if $item->link}{plink $item->link}{else}#{/if}">
+                <i class="nav-icon fa {$item->icon}"></i>
+                <p>
+                    {$item->name|translate}
+
+                    <p class="badge badge-primary pull-right" n:if="false" >4</p>
+                </p>
+                <i class="fa fa-angle-left pull-right" n:if="count($item->shownItems) > 0"></i>
+
+            </a>
+            {var $items = $item->shownItems}
+            {block #parents}
+                <ul class="nav nav-treeview" n:if="count($items) > 0" >
+                    <li class="{if count($subItem->shownItems) > 0}treeview{/if} {if $subItem->isCurrent()}menu-open{/if} nav-item"
+                            n:foreach="$items as $subItem"
+                            n:if="$item->allowed"
+                    >
+                        <a href="{plink $subItem->link}" class="nav-link {if $subItem->isCurrent(false)}active{/if} ">
+                            <i class="nav-icon fa fa-circle-o "></i> {$subItem->name|translate}
+                            <i class="fa fa-angle-left pull-right" n:if="count($subItem->items) > 0"></i>
+                        </a>
+                        {include #parents items => $subItem->items}
+                    </li>
+                </ul>
+            {/block}
+        </li>
+    </ul>
+</nav>

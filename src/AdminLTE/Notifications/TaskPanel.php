@@ -24,9 +24,9 @@ class TaskPanel extends BasePanel
     public function addTask(
         ?string $link, string $taskName, int $percent, string $completionText = '%d%% Complete'
     ): self {
-        $html = Html::el($link === null ? 'span' : 'a', $link === null ? null : ['href' => $link])
+        $html = Html::el($link === null ? 'span' : 'a', $link === null ? ['class' => 'dropdown-item'] : ['class' => 'dropdown-item','href' => $link])
             ->addHtml(
-                Html::el('h3')
+                Html::el('h4', ['class' => 'dropdown-item-title'])
                     ->addHtml(sprintf('%s <small class="pull-right">%d%%</small>', $taskName, $percent))
             )
             ->addHtml(
