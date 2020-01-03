@@ -130,14 +130,15 @@ class Item
     }
 
     /**
+     * @param bool $traverse
      * @return bool
      */
-    public function isCurrent(): bool
+    public function isCurrent(bool $traverse = true): bool
     {
         if ($this->isCurrent === true) {
             return true;
         }
-        if ($this->items !== null) {
+        if ($traverse && $this->items !== null) {
             foreach ($this->items as $item) {
                 if ($item->isCurrent() === true) {
                     return true;

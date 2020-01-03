@@ -1,19 +1,17 @@
-<li class="dropdown {$classType}-menu">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		<i class="fa fa-{$icon}"></i>
-		<span class="label label-{$counter[type]}" n:if="$counter[show] && $counter[count] > 0">{$counter[count]}</span>
-	</a>
-	<ul class="dropdown-menu">
-		<li class="header">{$headerTitle|translate}</li>
-		<li>
-			<ul class="menu">
-				<li n:foreach="$items as $item">
-					 {$item|noescape}
-				</li>
-			</ul>
-		</li>
-		<li class="footer">
-			<a href="{$linkAll}" n:if="$linkAll !== null">{$allTitle|translate}</a>
-		</li>
-	</ul>
+<li class="dropdown {$classType}-menu nav-item">
+    <a href="#" class="nav-link" data-toggle="dropdown">
+        <i class="fa fa-{$icon}"></i>
+        <span class="badge navbar-badge badge-{$counter[type]}" n:if="$counter[show] && $counter[count] > 0">{$counter[count]}</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <span class="dropdown-header">{$headerTitle|translate}</span>
+
+        <div class="dropdown-divider"></div>
+        {foreach $items as $item}
+            <span class="dropdown-item">{$item|noescape}</span>
+
+            <div class="dropdown-divider"></div>
+        {/foreach}
+        <a class="dropdown-item dropdown-footer" href="{$linkAll}" n:if="$linkAll !== null">{$allTitle|translate}</a>
+    </div>
 </li>

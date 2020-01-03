@@ -1,17 +1,18 @@
-<li class="dropdown user user-menu">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<li class="dropdown user user-menu nav-item">
+	<a href="#" class="nav-link" data-toggle="dropdown">
 		<img src="{$profileImage|nocheck}" class="user-image" alt="User Image" />
 		<span class="hidden-xs">Name</span>
 	</a>
-	<ul class="dropdown-menu">
-		<li class="user-header">
+	<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+		<div class="dropdown-header">
 			<img src="{$profileImage|nocheck}" class="img-circle" alt="User Image" />
-		</li>
+		</div>
 
-		<li class="user-footer">
+		<div class="user-footer">
 			<div class="pull-right">
 				<a n:href="logout" class="btn btn-default btn-flat">Sign out</a>
 			</div>
-		</li>
-	</ul>
+		</div>
+	</div>
 </li>
+

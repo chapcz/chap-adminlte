@@ -1,31 +1,44 @@
 <div class="login-logo">
     <b>{_$pageTitle} </b>
 </div>
-<div class="login-box-body">
-    {form form}
-        <div n:foreach="$form->errors as $error" class="alert alert-error fade in">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {$error|translate}
-        </div>
-        <div class="form-group has-feedback">
-            <input n:name="username" class="form-control">
-            <span class="fa fa-envelope form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-            <input n:name="password" class="form-control">
-            <span class="fa fa-user-secret form-control-feedback"></span>
-        </div>
-        <div class="row">
-            <div class="col-xs-8">
-                <div class="checkbox">
-                    <label>
-                        <input n:name="remember"> {$form[remember]->caption|translate}
-                    </label>
+<div class="card">
+    <div class="card-body login-card-body">
+        <p class="login-box-msg">{_"Sign in to start your session"}</p>
+        {form form}
+            <div n:foreach="$form->errors as $error" class="alert alert-error fade in">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {$error|translate}
+            </div>
+            <div class="input-group mb-3">
+                <input n:name="username" class="form-control">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fa fa-envelope"></span>
+                    </div>
                 </div>
             </div>
-            <div class="col-xs-4">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">{_'Sign In'}</button>
+
+            <div class="input-group mb-3">
+                <input n:name="password" class="form-control">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fa fa-lock"></span>
+                    </div>
+                </div>
             </div>
-        </div>
-    {/form}
+
+            <div class="row">
+                <div class="col-8">
+                    <div class="icheck-primary">
+                        <label>
+                            <input n:name="remember"> {$form[remember]->caption|translate}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <button type="submit" class="btn btn-primary btn-block  ">{_'Sign In'}</button>
+                </div>
+            </div>
+        {/form}
+    </div>
 </div>
