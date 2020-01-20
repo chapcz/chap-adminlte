@@ -25,6 +25,7 @@ module.exports = (grunt) ->
           'node_modules/bootstrap/dist/js/bootstrap.min.js'
           'src/AdminLTE/assets/custom/nette.init.js'
           'src/AdminLTE/assets/custom/modal.js'
+          'src/AdminLTE/assets/custom/toggle-menu.js'
         ]
 
     uglify:

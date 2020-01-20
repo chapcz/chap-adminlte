@@ -167,10 +167,7 @@ class AdminPresenter extends Presenter
 ## TODO:
 
 - Improve menu control and better authorization for nested items
-- Modals
-- Some extra components from AdminLTE easy to use from app
 - More examples
-- More configurable
  
  
 ## Inspiration

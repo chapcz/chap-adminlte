@@ -1,22 +1,21 @@
-<body class="skin-{$skin} hold-transition sidebar-mini">
+<body class="skin-{$skin} hold-transition sidebar-mini {if $collapsedMenu}sidebar-collapse{/if}">
 <div class="wrapper">
-
     {include "header.latte"}
-
     <aside class="main-sidebar sidebar-dark-primary">
         <a href="{plink Homepage:}" class="brand-link">
-            <span class="brand-text"><b>Admin</b>LTE</span>
+            <span class="brand-text">{$brand|noescape}</span>
         </a>
-        <div class="sidebar">
-            {if $search === 'sidebar'}
-                {form search class=>"form-inline"}
-                    <div class="input-group">
-                        {input q class=> "form-control", placeholder=> "Search ..."}
-                        <span class="input-group-btn">{input submit class=>"btn btn-sidebar"}</span>
+        {if $search === 'sidebar'}
+            {form search class=>"form-inline"}
+                <div class="input-group">
+                    {input q class=> "form-control form-control-sidebar", placeholder=> "Search ...", type => "search"}
+                    <div class="input-group-append">
+                        {input submit class=>"btn btn-sidebar"}
                     </div>
-                {/form}
-            {/if}
-
+                </div>
+            {/form}
+        {/if}
+        <div class="sidebar">
             {control menu:menu}
         </div>
     </aside>
@@ -24,7 +23,8 @@
         {control menu:breadcrumb}
         <div class="container-fluid">
             {snippet flash}
-                <div n:foreach="$presenter->template->flashes as $flash" class="alert alert-{$flash->type}" n:block="flashes">
+                <div n:foreach="$presenter->template->flashes as $flash"
+                        class="alert alert-{$flash->type}" n:block="flashes">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     {$flash->message|translate}
                 </div>
@@ -32,8 +32,6 @@
             {$content|noescape}
         </div>
     </div>
-
     {include "footer.latte"}
-
 </div>
 </body>

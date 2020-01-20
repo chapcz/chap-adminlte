@@ -1,0 +1,10 @@
+{snippet async}
+<div class="well">
+    {if $isLoaded}
+        {control async}
+    {else}
+        <a n:href="load!" class="async-load ajax"></a>
+        <div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>
+    {/if}
+</div>
+{/snippet}

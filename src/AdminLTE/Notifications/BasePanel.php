@@ -24,6 +24,7 @@ abstract class BasePanel extends Control implements IPanel
         ],
         'icon'        => 'bell-o',
         'linkAll'     => null,
+        'isDropdown'  => true,
         'allTitle'    => 'Show all',
         'headerTitle' => 'You have %d notifications.',
         'classType'   => '',
@@ -65,6 +66,17 @@ abstract class BasePanel extends Control implements IPanel
     protected function setClassType(string $classType): self
     {
         $this->parameters['classType'] = $classType;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $isDropdown
+     * @return static
+     */
+    protected function setIsDropdown(bool $isDropdown): self
+    {
+        $this->parameters['isDropdown'] = $isDropdown;
 
         return $this;
     }

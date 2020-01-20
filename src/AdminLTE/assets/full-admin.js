@@ -1306,17 +1306,42 @@ $.nette.ext('init', {
 $(function () {
     $.nette.init();
 });
-$("[modal]").unbind("click");
 
-$("[modal]").click(function(e) {
-    e.preventDefault();
-    $.ajax({
-        type: 'GET',
-        url: $(this).attr("href"),
-        data: {lte_no_layout: 1},
-        success: function (r) {
-            $("#modal .modal-content").html('<div class="mdl">'+r+'</div>');
-            $("#modal").modal("show");
-        }
+$( document ).ready(function() {
+    $("a.async-load").each(function () {
+        $.nette.ajax({ off: ['unique'], "url": this.getAttribute("href")});
     });
+});
+
+function initModals() {
+    $("[modal]").not(".modal-init").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr("href"),
+            data: {lte_no_layout: 1},
+            success: function (r) {
+                $("#modal .modal-content").html('<div class="mdl">'+r+'</div>');
+                $("#modal").modal("show");
+            }
+        });
+    });
+    $("[modal]").not(".modal-init").addClass("modal-init");
+}
+
+initModals();
+$(document).ajaxComplete(function() {
+    console.log(111);
+    initModals();
+});
+
+$('.sidebar-toggle').click(function(event) {
+    event.preventDefault();
+    if (Boolean(sessionStorage.getItem('sidebar-toggle-collapsed'))) {
+        sessionStorage.setItem('sidebar-toggle-collapsed', '');
+        document.cookie = "sidebar-toggle-collapsed=0;path=/";
+    } else {
+        sessionStorage.setItem('sidebar-toggle-collapsed', '1');
+        document.cookie = "sidebar-toggle-collapsed=1;path=/";
+    }
 });

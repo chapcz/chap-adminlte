@@ -1,9 +1,9 @@
 <li class="dropdown {$classType}-menu nav-item">
-    <a href="#" class="nav-link" data-toggle="dropdown">
+    <a href="{if $isDropdown}#{else}{$linkAll}{/if}" class="nav-link" {if $isDropdown}data-toggle="dropdown"{/if}>
         <i class="fa fa-{$icon}"></i>
         <span class="badge navbar-badge badge-{$counter[type]}" n:if="$counter[show] && $counter[count] > 0">{$counter[count]}</span>
     </a>
-    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" n:if="$isDropdown">
         <span class="dropdown-header">{$headerTitle|translate}</span>
 
         <div class="dropdown-divider"></div>

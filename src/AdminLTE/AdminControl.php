@@ -133,6 +133,14 @@ class AdminControl extends Control
     }
 
     /**
+     * @param string $title
+     */
+    public function setTitle(string $title): void
+    {
+        $this->defaults['title'] = $title;
+    }
+
+    /**
      * @param string   $content
      * @param object[] $flashes
      */
@@ -152,6 +160,7 @@ class AdminControl extends Control
                 __DIR__ . '/templates/' . $template,
                 array_merge([
                     'content' => $content,
+                    'collapsedMenu' => (bool) ($this->request->getCookie('sidebar-toggle-collapsed') ?? false),
                     'flashes' => $flashes,
                     'webLoader' => $this->webLoader->getFilesCollectionRender(),
                 ], $this->defaults)
