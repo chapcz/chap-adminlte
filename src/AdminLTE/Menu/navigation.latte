@@ -8,10 +8,9 @@
                 <i class="nav-icon fa {$item->icon}"></i>
                 <p>
                     {$item->name|translate}
-
                     <p class="badge badge-primary pull-right" n:if="false" >4</p>
+                    <i class="fa fa-angle-left right" n:if="count($item->shownItems) > 0"></i>
                 </p>
-                <i class="fa fa-angle-left pull-right" n:if="count($item->shownItems) > 0"></i>
 
             </a>
             {var $items = $item->shownItems}
@@ -22,8 +21,11 @@
                             n:if="$item->allowed"
                     >
                         <a href="{plink $subItem->link}" class="nav-link {if $subItem->isCurrent(false)}active{/if} ">
-                            <i class="nav-icon fa fa-circle-o "></i> {$subItem->name|translate}
-                            <i class="fa fa-angle-left pull-right" n:if="count($subItem->items) > 0"></i>
+                            <i class="nav-icon fa fa-circle-o "></i>
+                            <p>
+                                {$subItem->name|translate}
+                                <i class="fa fa-angle-left right" n:if="count($subItem->items) > 0"></i>
+                            </p>
                         </a>
                         {include #parents items => $subItem->items}
                     </li>
