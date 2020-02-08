@@ -2,6 +2,7 @@
 
 namespace Chap\AdminLTE\Menu;
 
+use Chap\AdminLTE\Components\ActionButtons\ActionButtons;
 use Chap\AdminLTE\DummyTranslator;
 use Nette\Application\ForbiddenRequestException;
 use Nette\Application\UI\Component;
@@ -45,7 +46,6 @@ class MenuControl extends Control
             try {
                 if ($item->link !== null && $presenter->isLinkCurrent($item->link) === true) {
                     $item->isCurrent = true;
-                    //$item->link = $presenter->link('this');
                     $this->current = $item;
                     if ($this->current->allowed === false) {
                         throw new ForbiddenRequestException('This view is not allowed');
@@ -72,6 +72,14 @@ class MenuControl extends Control
                 $this->flatten($item->items);
             }
         }
+    }
+
+    /**
+     * @return ActionButtons
+     */
+    protected function createComponentActionButtons(): ActionButtons
+    {
+        return new ActionButtons();
     }
 
     public function renderMenu(): void

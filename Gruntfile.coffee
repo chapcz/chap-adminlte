@@ -21,6 +21,7 @@ module.exports = (grunt) ->
           'node_modules/nette.ajax.js/nette.ajax.js'
           'node_modules/nette-forms/src/assets/netteForms.js'
           'node_modules/select2/dist/js/select2.full.min.js'
+          'node_modules/popper.js/dist/umd/popper.js'
           'node_modules/admin-lte/dist/js/adminlte.min.js'
           'node_modules/bootstrap/dist/js/bootstrap.min.js'
           'src/AdminLTE/assets/custom/nette.init.js'

@@ -155,7 +155,6 @@ class AdminPresenter extends Presenter
         $this->flashMessage('Looking for: ' . $word, 'danger');
     }
 }
-
 ```
 
 @layout.latte 
@@ -164,6 +163,70 @@ class AdminPresenter extends Presenter
 
 {control admin $content, $flashes}
 ```
+##Modals:
+For `a` tags with modal property will be shown "no-layout" result inside modal window.
+
+```latte
+<a n:href="edit" class="btn btn-success" modal>Add user</a>
+```
+
+## Components:
+##### Lazy screen (shown in demo site):
+
+```php
+
+    protected function createComponentSlowScreen(): SlowComponent
+    {
+        return $this->slowComponentFactory->create();
+    }
+
+    // Component with slow response (reading remote data, compute something) 
+    protected function createComponentSlowScreenLazyLoaded(): LazyScreen
+    {
+        return new LazyScreen(function () {
+            return $this->slowComponentFactory->create();
+        });
+    }
+```
+
+##### Action buttons (shown in demo site):
+Sometimes is useful to add some actions related for view (e.g. on product detail edit, send, assign etc.). 
+
+```php
+    public function renderDetail(): void
+    {
+        $this['admin']->addActionButton(Button::builder()->typeWarning()
+            ->link($this->link('this#test'))->faIcon('eye')->build());
+        $this['admin']->addActionButton(Button::builder()->typeInfo()
+            ->link($this->link('this#test2'))->faIcon('cog')->build());
+        $this['admin']->addDropdownLink(new DropLink('', 'link'));
+    }
+```
+##### Info-board (shown in demo site):
+For dashboard purposes we can show some info boxes with useful information.
+
+```php
+    protected function createComponentDashBoard(): InfoBoard
+    {
+        return (new InfoBoard())
+            ->setColSpan(6)
+            ->addBox((new InfoBox())
+                ->setColor('red')
+                ->setLink('#')
+                ->setIcon('pencil')
+                ->setNumber(1222)
+                ->setProgress(90)
+                ->setText('Pencil text')
+            )
+            ->addBox((new InfoBox())
+                ->setColor('green')
+                ->setIcon('globe')
+                ->setText('Globe text')
+                ->setNumber((float) random_int(0, 9999))
+            );
+    }
+```
+
 ## TODO:
 
 - Improve menu control and better authorization for nested items

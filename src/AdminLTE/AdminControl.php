@@ -2,6 +2,8 @@
 
 namespace Chap\AdminLTE;
 
+use Chap\AdminLTE\Components\ActionButtons\Button;
+use Chap\AdminLTE\Components\ActionButtons\DropLink;
 use Chap\AdminLTE\Login\ILoginFormFactory;
 use Chap\AdminLTE\Login\LoginForm;
 use Chap\AdminLTE\Menu\IMenuControlFactory;
@@ -120,6 +122,28 @@ class AdminControl extends Control
         if ($this['notifications'] instanceof Container) {
             $this['notifications']->addPanel($panel);
         }
+
+        return $this;
+    }
+
+    /**
+     * @param Button $button
+     * @return $this
+     */
+    public function addActionButton(Button $button): self
+    {
+        $this['menu']['actionButtons']->addButton($button);
+
+        return $this;
+    }
+
+    /**
+     * @param DropLink $dropLink
+     * @return $this
+     */
+    public function addDropdownLink(DropLink $dropLink): self
+    {
+        $this['menu']['actionButtons']->addDropdownLink($dropLink);
 
         return $this;
     }

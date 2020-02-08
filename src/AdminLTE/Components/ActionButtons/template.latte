@@ -1,0 +1,22 @@
+<div class="float-sm-right btn-group btn-group-sm mr-2" role="group">
+
+        <div class="dropdown float-right" n:if="count($dropLinks)">
+                <button class="btn btn-sm btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {_Actions}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a n:foreach="$dropLinks as $dropLink"
+                                class="dropdown-item" href="{$dropLink->link}">{$dropLink->caption}</a>
+                </div>
+        </div>
+
+        <a n:foreach="$buttons as $button"
+                href="{$button->link}"
+                role="button"
+                {if $button->title}title="{$button->title}"{/if}
+                class="btn-{$button->type} btn" >
+                <i n:if="$button->icon" class="{$button->icon}"></i>
+                {$button->caption}
+        </a>
+
+</div>

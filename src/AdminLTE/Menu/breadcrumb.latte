@@ -1,9 +1,10 @@
+{dump}
 <section class="content-header" n:if="$current">
 	<ol class="breadcrumb float-sm-right">
 
 		{block #parents}
 			<li class="{if !$current->parent}active{/if} breadcrumb-item">
-				<a n:tag-if="$current->link && $current->parent" href="{plink $current->link}">
+				<a n:tag-if="$current->link" href="{plink $current->link}">
 					<i class="fa {$current->icon}"></i> {$current->name}
 				</a>
 				{if $current->parent}
@@ -12,6 +13,7 @@
 			</li>
 		{/block}
 	</ol>
+	{control actionButtons}
 	<h1>
 		{_$current->name}
 		<small n:if="$current->subTitle">{_$current->subTitle}</small>
