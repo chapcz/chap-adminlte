@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{ifset title}{include title|striptags} | {/ifset}Nette Web</title>
+        {var $title = $control->getComponent('menu')->getTitle()}
+        <title>{ifset $title}{$title|striptags} | {/ifset}{$appName}</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         {$webLoader->css('admin-bundle')|noescape}
         <link rel="shortcut icon" href="{$basePath}/favicon.ico">

@@ -6,7 +6,7 @@ class ButtonBuilder
 {
     /** @var string */
     public $link;
-    /** @var string */
+    /** @var string|null */
     public $type;
     /** @var string|null */
     public $caption;
@@ -31,10 +31,10 @@ class ButtonBuilder
      * @return ButtonBuilder
      */
     /**
-     * @param string $type
+     * @param string|null $type
      * @return ButtonBuilder
      */
-    public function type(string $type): ButtonBuilder
+    public function type(?string $type): ButtonBuilder
     {
         $this->type = $type;
 
@@ -64,10 +64,10 @@ class ButtonBuilder
     }
 
     /**
-     * @param string $icon
+     * @param string|null $icon
      * @return ButtonBuilder
      */
-    public function faIcon(string $icon): ButtonBuilder
+    public function faIcon(?string $icon): ButtonBuilder
     {
         $this->icon = "fa fa-$icon";
 
@@ -75,10 +75,10 @@ class ButtonBuilder
     }
 
     /**
-     * @param string $title
+     * @param string|null $title
      * @return ButtonBuilder
      */
-    public function title(string $title): ButtonBuilder
+    public function title(?string $title): ButtonBuilder
     {
         $this->title = $title;
 

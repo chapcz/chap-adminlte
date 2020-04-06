@@ -15,6 +15,9 @@ class MenuControl extends Control
     /** @var Item[]  */
     private $allItems = [];
 
+    /** @var string|null */
+    private $title;
+
     /**
      * @var Item[]
      */
@@ -91,6 +94,22 @@ class MenuControl extends Control
     public function renderBreadcrumb(): void
     {
         DummyTranslator::initEmpty($this->createTemplate())
-            ->render(__DIR__ . '/breadcrumb.latte', ['current' => $this->current]);
+            ->render(__DIR__ . '/breadcrumb.latte', ['current' => $this->current, 'title' => $this->title]);
+    }
+
+    /**
+     * @param string|null $title
+     */
+    public function setTitle(?string $title): void
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTitle(): ?string
+    {
+        return $this->title;
     }
 }

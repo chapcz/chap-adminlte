@@ -23,7 +23,7 @@ class Button
 
     /** @var string */
     public $link;
-    /** @var string */
+    /** @var string|null */
     public $type;
     /** @var string|null */
     public $caption;
@@ -39,7 +39,7 @@ class Button
      * @param string|null $icon
      * @param string|null $title
      */
-    public function __construct(string $link, string $type, ?string $caption = null, ?string $icon = null, ?string $title = null)
+    public function __construct(string $link, ?string $type, ?string $caption = null, ?string $icon = null, ?string $title = null)
     {
         $this->link = $link;
         $this->type = $type;

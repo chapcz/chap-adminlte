@@ -1,6 +1,5 @@
-{dump}
-<section class="content-header" n:if="$current">
-	<ol class="breadcrumb float-sm-right">
+<section class="content-header">
+	<ol class="breadcrumb float-sm-right" n:if="$current">
 
 		{block #parents}
 			<li class="{if !$current->parent}active{/if} breadcrumb-item">
@@ -15,7 +14,7 @@
 	</ol>
 	{control actionButtons}
 	<h1>
-		{_$current->name}
-		<small n:if="$current->subTitle">{_$current->subTitle}</small>
+		{if $title !== null}{$title|noescape}{elseif $current}{_$current->name}{/if}
+		<small n:if="$current && $current->subTitle">{_$current->subTitle}</small>
 	</h1>
 </section>

@@ -23,7 +23,7 @@ module.exports = (grunt) ->
           'node_modules/select2/dist/js/select2.full.min.js'
           'node_modules/popper.js/dist/umd/popper.js'
           'node_modules/admin-lte/dist/js/adminlte.min.js'
-          'node_modules/bootstrap/dist/js/bootstrap.min.js'
+          'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
           'src/AdminLTE/assets/custom/nette.init.js'
           'src/AdminLTE/assets/custom/modal.js'
           'src/AdminLTE/assets/custom/toggle-menu.js'

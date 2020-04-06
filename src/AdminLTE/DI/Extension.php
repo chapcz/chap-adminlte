@@ -21,6 +21,7 @@ class Extension extends Nette\DI\CompilerExtension
 			'appRoot' => '%wwwDir%/../',
 			'menu' => [],
 			'skin' => 'purple',
+			'appName' => 'Nette web',
 			'shade' => 'dark',
             'brand' => '<b>Admin</b>LTE',
 			'search' => 'sidebar', // top, sidebar, none

@@ -21,7 +21,7 @@
                             n:if="$item->allowed"
                     >
                         <a href="{plink $subItem->link}" class="nav-link {if $subItem->isCurrent(false)}active{/if} ">
-                            <i class="nav-icon fa fa-circle-o "></i>
+                            <i class="nav-icon fa {if $subItem->icon}{$subItem->icon}{else}fa-circle-o{/if} "></i>
                             <p>
                                 {$subItem->name|translate}
                                 <i class="fa fa-angle-left right" n:if="count($subItem->items) > 0"></i>

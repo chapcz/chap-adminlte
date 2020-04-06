@@ -24,9 +24,11 @@ abstract class BasePanel extends Control implements IPanel
         ],
         'icon'        => 'bell-o',
         'linkAll'     => null,
+        'id'          => null,
         'isDropdown'  => true,
         'allTitle'    => 'Show all',
         'headerTitle' => 'You have %d notifications.',
+        'iconTitle'   => null,
         'classType'   => '',
     ];
 
@@ -104,6 +106,29 @@ abstract class BasePanel extends Control implements IPanel
     }
 
     /**
+     * @param string $title
+     * @return static
+     */
+    public function setIconTitle(?string $title): self
+    {
+        $this->parameters['iconTitle'] = $title;
+
+        return $this;
+    }
+
+
+    /**
+     * @param string $id
+     * @return static
+     */
+    public function setId(?string $id): self
+    {
+        $this->parameters['id'] = $id;
+
+        return $this;
+    }
+
+    /**
      * @param Html<string, mixed> $html
      * @return static
      */
@@ -130,9 +155,9 @@ abstract class BasePanel extends Control implements IPanel
         $this->parameters['counter'] = [
             'count' => $count,
         ];
-        $minSuccess === null ? null : $this->parameters['counter']['minSuccess'];
-        $minWarning === null ? null : $this->parameters['counter']['minWarning'];
-        $minDanger === null ? null : $this->parameters['counter']['minDanger'];
+        $this->parameters['counter']['minSuccess'] = $minSuccess ?? self::$defaults['counter']['minSuccess'];
+        $this->parameters['counter']['minWarning'] = $minWarning ?? self::$defaults['counter']['minWarning'];
+        $this->parameters['counter']['minDanger'] = $minDanger ?? self::$defaults['counter']['minDanger'];
 
         return $this;
     }

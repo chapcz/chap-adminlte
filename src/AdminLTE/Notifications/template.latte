@@ -1,5 +1,5 @@
 <li class="dropdown {$classType}-menu nav-item">
-    <a href="{if $isDropdown}#{else}{$linkAll}{/if}" class="nav-link" {if $isDropdown}data-toggle="dropdown"{/if}>
+    <a href="{if $isDropdown}#{else}{$linkAll}{/if}" {if $iconTitle}title="{$iconTitle}"{/if} class="nav-link" {if $isDropdown}data-toggle="dropdown"{/if} {if $id}id="{$id}"{/if}>
         <i class="fa fa-{$icon}"></i>
         <span class="badge navbar-badge badge-{$counter[type]}" n:if="$counter[show] && $counter[count] > 0">{$counter[count]}</span>
     </a>
