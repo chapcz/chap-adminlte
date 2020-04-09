@@ -165,6 +165,14 @@ class AdminControl extends Control
     }
 
     /**
+     * @param string $username
+     */
+    public function setUsername(string $username): void
+    {
+        $this->defaults['profileName'] = $username;
+    }
+
+    /**
      * @param string   $content
      * @param object[] $flashes
      */
