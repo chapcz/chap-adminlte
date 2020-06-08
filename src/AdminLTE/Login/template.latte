@@ -5,7 +5,7 @@
     <div class="card-body login-card-body">
         <p class="login-box-msg">{_"Sign in to start your session"}</p>
         {form form}
-            <div n:foreach="$form->errors as $error" class="alert alert-error fade in">
+            <div n:foreach="$form->errors as $error" class="alert alert-danger">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 {$error|translate}
             </div>

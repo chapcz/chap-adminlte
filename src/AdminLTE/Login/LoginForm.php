@@ -72,6 +72,7 @@ class LoginForm extends Control
     /**
      * @param Form                     $form
      * @param ArrayHash<string, mixed> $values
+     * @throws \Nette\Application\AbortException
      */
     public function process(Form $form, ArrayHash $values): void
     {
@@ -82,6 +83,7 @@ class LoginForm extends Control
                 $this->user->setExpiration('10 minutes');
             }
             $this->user->login($values->username, $values->password);
+            $this->redirect('this');
 
         } catch (AuthenticationException $e) {
             $form->addError($e->getMessage());

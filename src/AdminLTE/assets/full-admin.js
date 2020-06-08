@@ -3941,13 +3941,14 @@ $( document ).ready(function() {
 function initModals() {
     $("[modal]").not(".modal-init").click(function(e) {
         e.preventDefault();
-        $.ajax({
+        $.nette.ajax({
             type: 'GET',
             url: $(this).attr("href"),
             data: {lte_no_layout: 1},
             success: function (r) {
                 $("#modal .modal-content").html('<div class="mdl">'+r+'</div>');
                 $("#modal").modal("show");
+                initModals();
             }
         });
     });
@@ -3955,10 +3956,6 @@ function initModals() {
 }
 
 initModals();
-$(document).ajaxComplete(function() {
-    console.log(111);
-    initModals();
-});
 
 $('.sidebar-toggle').click(function(event) {
     event.preventDefault();
