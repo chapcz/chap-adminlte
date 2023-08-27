@@ -5,7 +5,9 @@
 	</a>
 	<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 		<div class="dropdown-header">
-			<img src="{$profileImage|nocheck}" class="img-circle" alt="User Image" />
+			<a n:if="$profileLink" n:href="$profileLink" >
+				<img src="{$profileImage|nocheck}" class="img-circle" alt="User Image" />
+			</a>
 		</div>
 
 		<div class="user-footer">
